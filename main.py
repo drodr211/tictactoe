@@ -21,9 +21,10 @@ run = True
 while run:
     window.fill((204, 204, 204))
 
-    if (turn % 2)  == 0:
-        text_surface = FONT.render("Player 1 turn", True, (0, 0, 0))
-    else: text_surface = FONT.render("Player 2 turn", True, (0, 0, 0))
+    p = 1
+    if (turn % 2)  == 1:
+        p = 2
+    text_surface = FONT.render("Player " +str(p)+ " turn", True, (0, 0, 0))
     
     for row in board: #draws board
         for rect in row:
@@ -37,8 +38,7 @@ while run:
                     if boarddata[i][j] == 0:
                         if column.collidepoint(pygame.mouse.get_pos()):
                             boarddata[i][j] = turn % 2 + 1
-                            turn += 1
-                            
+                            turn += 1           
         #quits game
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE: run = False
@@ -54,7 +54,6 @@ while run:
 
                 if column == 1: pygame.draw.rect(window, blue, temp)     
                 elif column == 2: pygame.draw.rect(window, red, temp)    
-
     #update window
     window.blit(text_surface, dest=(0,0))
     pygame.display.flip()
