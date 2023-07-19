@@ -1,4 +1,5 @@
 import array
+import pygame
 
 def checkWin(bd, pnum):
     if checkRow(bd[0], pnum):
@@ -31,3 +32,13 @@ def checkDiagonals(bd, num):
     if checkRow([bd[2][0], bd[1][1], bd[0][2]], num):
         return True
     else: return False
+
+def checkClick(bd, b, turn):
+    for i, row in enumerate(b):
+                for j, column in enumerate(row):
+                    if bd[i][j] == 0:
+                        if column.collidepoint(pygame.mouse.get_pos()):
+                            bd[i][j] = turn % 2 + 1
+                            return turn + 1 
+def columnY(i):
+    return ((i+1)*150)+50
