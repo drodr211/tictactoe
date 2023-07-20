@@ -1,5 +1,6 @@
 import array
 import pygame
+import time
 
 def checkWin(bd, pnum):
     if checkRow(bd[0], pnum):
@@ -42,3 +43,11 @@ def checkClick(bd, b, turn):
                             return turn + 1 
 def columnY(i):
     return ((i+1)*150)+50
+
+def checkDraw(bd):
+    temp = [bd[0][0], bd[0][1], bd[0][2], 
+            bd[1][0], bd[1][1], bd[1][2],
+            bd[2][0], bd[2][1], bd[2][2]]
+    return all(i != 0 for i in temp)
+
+    

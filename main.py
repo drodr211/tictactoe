@@ -21,7 +21,7 @@ while run:
     window.fill((204, 204, 204))
 
     p = 1
-    if (turn % 2)  == 1:
+    if turn % 2 == 1:
         p = 2
     text_surface = FONT.render("Player " +str(p)+ " turn", True, (0, 0, 0))
     #draws board
@@ -54,9 +54,18 @@ while run:
             game_win = FONT.render("Player 1 wins", True, blue)
         elif check_win2:
             game_win = FONT.render("Player 2 wins", True, red)
+       
         window.blit(game_win, dest=(0,100))
         turn = 0
-        boarddata = [[0,0,0], [0,0,0], [0,0,0] ]
+        boarddata = [[0,0,0], [0,0,0], [0,0,0]]
+        pygame.display.flip()
+        time.sleep(3)
+
+    if checkDraw(boarddata):
+        draw = FONT.render("Draw", True, black)
+        window.blit(draw, dest=(0,100))
+        turn = 0
+        boarddata = [[0,0,0], [0,0,0], [0,0,0]]
         pygame.display.flip()
         time.sleep(3)
 
