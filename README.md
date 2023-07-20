@@ -6,9 +6,9 @@
   - Turn Counter
   - Win Conditions
   - functioning GUI to play
+  -  W/L/Draw counter
+  - clear board when draw
 
 
 WIP:
-  - W/L/Draw counter
-  - need to clear board when draw
   - need to update player icons (currently are just colored squares)
