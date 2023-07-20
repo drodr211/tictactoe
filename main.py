@@ -16,6 +16,9 @@ black = (0,0,0)
 blue = (0,0,255)
 red = (255,0,0)
 
+p1score = [0,0,0]
+p2score = [0,0,0]
+
 run = True
 while run:
     window.fill((204, 204, 204))
@@ -42,9 +45,16 @@ while run:
             if column != 0:
                 temp = pygame.Rect((150*j+200), columnY(i), 50, 50)
                 if column == 1: pygame.draw.rect(window, blue, temp)     
-                elif column == 2: pygame.draw.rect(window, red, temp)    
+                elif column == 2: pygame.draw.rect(window, red, temp) 
+
+    p1 = FONT.render("P1: "+str(p1score[0])+"-"+str(p1score[1])+"-"+str(p1score[2]), True, blue)
+    p2 = FONT.render("P2: "+str(p2score[0])+"-"+str(p2score[1])+"-"+str(p2score[2]), True, red)
+       
     #update window
-    window.blit(text_surface, dest=(0,0))
+    window.blit(text_surface, dest=(270,630))
+    window.blit(p1, dest=(0,0))
+    window.blit(p2, dest=(0,50))
+
     pygame.display.flip()
     #chek win conditions
     check_win1 = checkWin(boarddata, 1)
@@ -52,18 +62,24 @@ while run:
     if check_win1 or check_win2:
         if check_win1:
             game_win = FONT.render("Player 1 wins", True, blue)
+            p1score[0] += 1
+            p2score[1] += 1
         elif check_win2:
             game_win = FONT.render("Player 2 wins", True, red)
+            p2score[0] += 1
+            p1score[1] += 1
        
-        window.blit(game_win, dest=(0,100))
+        window.blit(game_win, dest=(250,100))
         turn = 0
         boarddata = [[0,0,0], [0,0,0], [0,0,0]]
         pygame.display.flip()
         time.sleep(3)
 
     if checkDraw(boarddata):
+        p1score[2] += 1
+        p2score[2] += 1
         draw = FONT.render("Draw", True, black)
-        window.blit(draw, dest=(0,100))
+        window.blit(draw, dest=(330,100))
         turn = 0
         boarddata = [[0,0,0], [0,0,0], [0,0,0]]
         pygame.display.flip()
